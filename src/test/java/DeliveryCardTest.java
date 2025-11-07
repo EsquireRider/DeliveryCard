@@ -53,7 +53,7 @@ public class DeliveryCardTest {
     }
 
     @Test
-    void shouldValidFields1() {
+    void shouldValidFieldsDropDownList() {
         Selenide.open("http://localhost:9999/");
         SelenideElement form = $("form");
         form.$("[placeholder='Город']").setValue("Ни");
