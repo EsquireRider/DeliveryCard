@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -13,6 +14,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DeliveryCardTest {
+    private WebDriver driver;
+
 
     public String generateDate(int days, String pettern) {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern(pettern));
