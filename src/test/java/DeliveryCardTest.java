@@ -14,8 +14,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DeliveryCardTest {
 
-    public String generateDate(int days, String pettern) {
-        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern(pettern));
+    public String generateDate(int days, String pattern) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern(pattern));
     }
 
     @Test
