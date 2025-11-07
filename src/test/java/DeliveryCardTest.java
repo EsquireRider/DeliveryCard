@@ -2,7 +2,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import org.checkerframework.checker.units.qual.K;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -36,13 +35,13 @@ public class DeliveryCardTest {
     }
 
     @Test
-    void shouldValidFieldsPlannigDate() {
-        String plannigDate = generateDate(7, "dd.MM.yyyy");
+    void shouldValidFieldsPlanDate() {
+        String planningDate = generateDate(7, "dd.MM.yyyy");
         Selenide.open("http://localhost:9999/");
         SelenideElement form = $("form");
         form.$("[placeholder='Город']").setValue("Нижний Новгород");
         form.$("[placeholder='Дата встречи']").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE)
-                .setValue(plannigDate);
+                .setValue(planningDate);
         form.$("[name='name']").setValue("Тятяев Антон");
         form.$("[name='phone']").setValue("+79521112233");
         $$("[data-test-id='agreement']").filter(Condition.visible).find(Condition.text("Я соглашаюсь"))
