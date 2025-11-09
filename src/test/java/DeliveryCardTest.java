@@ -27,32 +27,30 @@ public class DeliveryCardTest {
 
     @Test
     void shouldValidFields() {
-        SelenideElement form = $("form");
-        form.$("[placeholder='Город']").setValue("Нижний Новгород");
-        form.$("[placeholder='Дата встречи']").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE)
-                .setValue("20.11.2025");
-        form.$("[name='name']").setValue("Тятяев Антон");
-        form.$("[name='phone']").setValue("+79521112233");
+        String planningDate = generateDate(3, "dd.MM.yyyy");
+        $("fieldset input").setValue("Нижний Новгород");
+        $("fieldset input[placeholder='Дата встречи']").setValue(planningDate);
+        $("fieldset input[name='name']").setValue("Тятяев Антон");
+        $("fieldset input[name='phone']").setValue("+79521112233");
         $("[data-test-id='agreement']").click();
         $$("button").find(Condition.text("Забронировать")).click();
         $("[data-test-id='notification']")
-                .should(Condition.text("Встреча успешно забронирована на 20.11.2025"), Duration.ofSeconds(15))
+                .should(Condition.text(planningDate), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
     }
 
     @Test
     void shouldValidFieldsPlanDate() {
         String planningDate = generateDate(7, "dd.MM.yyyy");
-        SelenideElement form = $("form");
-        form.$("[placeholder='Город']").setValue("Нижний Новгород");
-        form.$("[placeholder='Дата встречи']").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE)
+        $("fieldset input").setValue("Нижний Новгород");
+        $("fieldset input[placeholder='Дата встречи']").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE)
                 .setValue(planningDate);
-        form.$("[name='name']").setValue("Тятяев Антон");
-        form.$("[name='phone']").setValue("+79521112233");
+        $("fieldset input[name='name']").setValue("Тятяев Антон");
+        $("fieldset input[name='phone']").setValue("+79521112233");
         $("[data-test-id='agreement']").click();
         $$("button").find(Condition.text("Забронировать")).click();
         $("[data-test-id='notification']")
-                .should(Condition.text("Встреча успешно забронирована на 16.11.2025"), Duration.ofSeconds(15))
+                .should(Condition.text(planningDate), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
     }
 }
