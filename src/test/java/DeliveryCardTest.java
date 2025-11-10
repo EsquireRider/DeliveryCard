@@ -28,29 +28,29 @@ public class DeliveryCardTest {
     @Test
     void shouldValidFields() {
         String planningDate = generateDate(3, "dd.MM.yyyy");
-        $("fieldset input").setValue("Нижний Новгород");
-        $("fieldset input[placeholder='Дата встречи']").setValue(planningDate);
-        $("fieldset input[name='name']").setValue("Тятяев Антон");
-        $("fieldset input[name='phone']").setValue("+79521112233");
+        $("[data-test-id='city'] input").setValue("Нижний Новгород");
+        $("[data-test-id='date'] input").setValue(planningDate);
+        $("[data-test-id='name'] input").setValue("Тятяев Антон");
+        $("[data-test-id='phone'] input").setValue("+79521112233");
         $("[data-test-id='agreement']").click();
         $$("button").find(Condition.text("Забронировать")).click();
         $("[data-test-id='notification']")
-                .should(Condition.text(planningDate), Duration.ofSeconds(15))
+                .shouldHave(Condition.text(planningDate), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
     }
 
     @Test
     void shouldValidFieldsPlanDate() {
         String planningDate = generateDate(7, "dd.MM.yyyy");
-        $("fieldset input").setValue("Нижний Новгород");
-        $("fieldset input[placeholder='Дата встречи']").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE)
+        $("[data-test-id='city'] input").setValue("Нижний Новгород");
+        $("[data-test-id='date'] input").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE)
                 .setValue(planningDate);
-        $("fieldset input[name='name']").setValue("Тятяев Антон");
-        $("fieldset input[name='phone']").setValue("+79521112233");
+        $("[data-test-id='name'] input").setValue("Тятяев Антон");
+        $("[data-test-id='phone'] input").setValue("+79521112233");
         $("[data-test-id='agreement']").click();
         $$("button").find(Condition.text("Забронировать")).click();
         $("[data-test-id='notification']")
-                .should(Condition.text(planningDate), Duration.ofSeconds(15))
+                .shouldHave(Condition.text(planningDate), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
     }
 }
